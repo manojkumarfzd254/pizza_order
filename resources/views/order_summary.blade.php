@@ -22,15 +22,23 @@
                             <th>Pizza Size:</th> <td>{{ ucfirst($order->pizza_size) }}</td>
                         </tr>
                         <tr>
-                            <th>Selected Toppings:</th>
-                            <td>
-                                @foreach(explode(',', $order->toppings) as $toppingId)
-                                    {{ \App\Models\Topping::find($toppingId)->name }},
-                                @endforeach
-                            </td>
+                            <th>Sub Total:</th> <td><i class="fa fa-inr"></i> {{ $pizza['price_'.$pizzaSize] }}/-</td>
                         </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr><th colspan="2"><center>Extra Toppings</center></th></tr>
+                        @foreach(explode(',', $order->toppings) as $toppingId)
+                            <tr>
+                            @php
+                                $topping = \App\Models\Topping::find($toppingId);
+                            @endphp
+                            <th>{{ $topping->name }}:</th> <td><i class="fa fa-inr"></i> {{ $topping['price_' . $order->pizza_size] }}</td>
+                            </tr>
+                        @endforeach
                         <tr>
-                            <th>Total Amount:</th> <td><i class="fa fa-inr"></i> {{ $totalAmount }}/-</td>
+                            <th>Grand Total:</th><td><i class="fa fa-inr"></i> {{$totalAmount}}/-</td>
                         </tr>
                     </tbody>
                 </table>

@@ -42,7 +42,7 @@ class PizzaOrderController extends Controller
         $order->toppings = implode(',', $selectedToppings);
         $order->save();
 
-        return view('order_summary', compact('order', 'totalAmount','pizza'));
+        return view('order_summary', compact('order', 'totalAmount','pizza','pizzaSize'));
     }
 }
 
