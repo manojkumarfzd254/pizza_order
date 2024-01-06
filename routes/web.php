@@ -14,9 +14,7 @@ use App\Http\Controllers\PizzaOrderController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get("/order",[PizzaOrderController::class,'showOrderForm'])->name('order.create');
+
+Route::get("/",[PizzaOrderController::class,'showOrderForm'])->name('order.create');
 Route::post("/order",[PizzaOrderController::class,'placeOrder'])->name('place-order');
